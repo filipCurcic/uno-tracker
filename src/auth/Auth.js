@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Spinner from '../components/Spinner';
 import { app } from '../firebase/config';
 
 export const AuthContext = React.createContext();
@@ -12,6 +13,9 @@ const Auth = ({ children }) => {
       setPending(false);
     });
   }, []);
+  if (pending) {
+    return <Spinner />;
+  }
   return (
     <AuthContext.Provider
       value={{

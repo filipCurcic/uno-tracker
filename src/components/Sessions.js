@@ -1,16 +1,22 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import NewSession from './NewSession';
 import Session from './Session';
 import { projectFirestore, timestamp } from '../firebase/config';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { AuthContext } from '../auth/Auth';
+import useFirestoreQuery from '../hooks/UseFirestoreQuery';
+import useFirestore from '../hooks/UseFirestore';
+
 const Sessions = () => {
   const { currentUser } = useContext(AuthContext);
+  // const sessionsRef = projectFirestore.collection('sessions');
+  // const query = sessionsRef.where('uid', '==', `${currentUser.uid}`);
+  // const [sessions] = useCollectionData(query, { idField: 'id' });
 
-  const sessionsRef = projectFirestore.collection('sessions');
-  const query = sessionsRef.orderBy('createdAt');
-  const [sessions] = useCollectionData(query, { idField: 'id' });
-  console.log(sessions);
+  const { docs } = useFirestoreQuery('sessions', 'uid', '==', currentUser.uid);
+  const test = useFirestore('sessions');
+  console.log(test.docs);
+
   const handleSubmit = async (event) => {
     const collectionRef = projectFirestore.collection('sessions');
     try {
@@ -31,10 +37,8 @@ const Sessions = () => {
       </div>
       <div className="row center">
         <NewSession click={handleSubmit} />
-        {sessions &&
-          sessions.map((session) => (
-            <Session key={session.id} session={session} />
-          ))}
+        {docs &&
+          docs.map((session) => <Session key={session.id} session={session} />)}
       </div>
     </div>
   );
