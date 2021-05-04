@@ -15,14 +15,13 @@ const Sessions = () => {
 
   const { docs } = useFirestoreQuery('sessions', 'uid', '==', currentUser.uid);
   const test = useFirestore('sessions');
-  console.log(test.docs);
-
   const handleSubmit = async (event) => {
     const collectionRef = projectFirestore.collection('sessions');
     try {
       await collectionRef.add({
         createdAt: timestamp(),
         uid: currentUser.uid,
+        players: [],
       });
     } catch (error) {
       alert(error);

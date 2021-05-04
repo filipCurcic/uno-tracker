@@ -4,6 +4,7 @@ import firebase from 'firebase/app';
 import { AuthContext } from '../auth/Auth';
 
 import logo from '../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const { currentUser } = useContext(AuthContext);
@@ -22,7 +23,9 @@ const Header = () => {
     <div className="header ">
       <div className="container">
         <div className="logo">
-          <img src={logo} alt="uno logo" />
+          <Link to="/home">
+            <img src={logo} alt="uno logo" />
+          </Link>
         </div>
         <div className="menu">
           <h1>Leaderboard</h1>

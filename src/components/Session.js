@@ -15,7 +15,7 @@ const Session = (session) => {
     <Link
       to={{
         pathname: `/session/${session.session.id}`,
-        state: session,
+        state: session.session,
       }}
     >
       <div className="session">
