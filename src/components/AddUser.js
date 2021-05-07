@@ -13,6 +13,7 @@ const AddUser = () => {
         label: name.value,
         createdAt: timestamp(),
       });
+      console.log('ADD USER');
       event.target.reset();
     } catch (error) {
       alert(error);

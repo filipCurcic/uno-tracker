@@ -19,6 +19,7 @@ const useFirestoreQuery = (
           documents.push({ ...doc.data(), id: doc.id });
         });
         setDocs(documents);
+        console.log('USE FIRESTORE QUERY', documents);
       });
 
     return () => unsub();

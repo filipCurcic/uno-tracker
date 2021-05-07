@@ -14,6 +14,7 @@ const useFirestore = (collection) => {
           documents.push({ ...doc.data(), id: doc.id });
         });
         setDocs(documents);
+        console.log('USE FIRESTORE', documents);
       });
 
     return () => unsub();

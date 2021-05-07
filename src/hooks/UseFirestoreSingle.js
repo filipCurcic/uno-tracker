@@ -12,6 +12,7 @@ const useFirestoreSingle = (collection, id) => {
         let document = { ...snap.data(), id: snap.id };
 
         setDoc(document);
+        console.log('USE FIRESTORE SINGLE', document);
       });
 
     return () => unsub();
