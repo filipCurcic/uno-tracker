@@ -11,9 +11,11 @@
 @import './components/session-view.scss';
 @import './components/add-user.scss';
 @import './components/player-points.scss';
+@import './components/leaderboards.scss';
 
 body,
 html {
+  box-sizing: border-box;
   user-select: none;
   overscroll-behavior: none;
   margin: 0;
@@ -54,6 +56,7 @@ html {
     width: 100%;
     min-width: 100%;
   }
+
   .row {
     display: flex;
     height: 100%;
@@ -81,4 +84,27 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+button {
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: $lightGray;
+  transition: 0.3s;
+  &:hover {
+    cursor: pointer;
+    background-color: $darkGray;
+    color: $white;
+  }
+}
+input {
+  border: none;
+  border-bottom: 1px solid $black;
+  padding: 10px;
+  &:focus {
+    outline: none;
+  }
+}
+a {
+  text-decoration: none;
 }

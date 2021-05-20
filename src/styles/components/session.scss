@@ -1,6 +1,43 @@
 .session {
-  width: 162px;
-  height: 162px;
-  border: 1px solid $black;
-  border-radius: 20px;
+  width: 200px;
+  height: 264px;
+  border: 1px solid $lightGray;
+  padding: 10px;
+  color: $black;
+  transition: 0.3s;
+  margin: 0;
+  overflow: scroll;
+  overflow-x: hidden;
+  .delete-button {
+    opacity: 0;
+    transition: 0.3s;
+    width: 100%;
+    text-align: right;
+    &:hover {
+      color: red;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 1.7px 2.2px rgba(0, 0, 0, 0.02),
+      0 4px 5.3px rgba(0, 0, 0, 0.028), 0 7.5px 10px rgba(0, 0, 0, 0.035),
+      0 13.4px 17.9px rgba(0, 0, 0, 0.042), 0 25.1px 33.4px rgba(0, 0, 0, 0.05),
+      0 60px 80px rgba(0, 0, 0, 0.07);
+    .delete-button {
+      opacity: 1;
+    }
+  }
+
+  .player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+::-webkit-scrollbar-thumb {
+  background: $lightGray;
 }

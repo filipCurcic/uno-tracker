@@ -7,7 +7,11 @@ const Home = () => {
   if (currentUser) {
     return <Sessions />;
   }
-  return <h1>You need to sign in</h1>;
+  return (
+    <div style={{ display: 'grid', placeItems: 'center' }}>
+      <h1>You have to be signed in</h1>
+    </div>
+  );
 };
 
 export default Home;

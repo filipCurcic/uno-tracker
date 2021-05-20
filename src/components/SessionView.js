@@ -17,11 +17,11 @@ const SessionView = ({ location }) => {
   const users = useFirestore('users');
   const sessionRef = projectFirestore.collection('sessions');
 
-  const addRound = async (playerId, points) => {
-    console.log(playerId, points);
+  const addRound = async (playerId, points, playerName) => {
     const newRound = {
       player_id: playerId,
-      points,
+      player_name: playerName,
+      points: parseInt(points),
       round_number: 1,
     };
     try {
@@ -43,15 +43,11 @@ const SessionView = ({ location }) => {
   if (doc) {
     return (
       <div className="container">
-        {doc.players === undefined || doc.players.length === 0 ? (
-          <h1>no players</h1>
-        ) : (
-          <h2>players</h2>
-        )}
-
         <div>
           {doc.players === undefined || doc.players.length === 0 ? (
-            <>
+            <div className="user-select">
+              <h3>{doc.createdAt && doc.createdAt.toDate().toDateString()}</h3>
+              <h1>Select Players</h1>
               <Select
                 isSearchable
                 placeholder="Select User"
@@ -59,8 +55,8 @@ const SessionView = ({ location }) => {
                 options={users.docs}
                 onChange={setSelectedUsers}
               />
-              <button onClick={addPlayers}>add players</button>
-            </>
+              <button onClick={addPlayers}>Add Players</button>
+            </div>
           ) : (
             <div className="players">
               {doc.players &&
@@ -76,12 +72,8 @@ const SessionView = ({ location }) => {
             </div>
           )}
         </div>
-        <button onClick={() => setIsActive(!isActive)}>Finish Session</button>
-        {isActive ? <h1>is active</h1> : <h2>is not active anymore</h2>}
-        {/* <button onClick={test}>test</button> */}
-        {/* {doc.players.length === 0 ? (
-          <button onClick={addPlayers}>add players</button>
-        ) : null} */}
+        {/* <button onClick={() => setIsActive(!isActive)}>Finish Session</button> */}
+        {/* {isActive ? <h1>is active</h1> : <h2>is not active anymore</h2>} */}
       </div>
     );
   } else {

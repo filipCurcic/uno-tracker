@@ -28,7 +28,10 @@ const Header = () => {
           </Link>
         </div>
         <div className="menu">
-          <h1>Leaderboard</h1>
+          <Link to="/leaderboard">
+            <h1>Leaderboard</h1>
+          </Link>
+          {/* {currentUser ? <h1>Friends</h1> : null} */}
           {currentUser ? (
             <h1 onClick={signOut}>Sign Out</h1>
           ) : (

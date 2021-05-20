@@ -23,7 +23,7 @@ const AddUser = () => {
   return (
     <div className="session-container">
       <form onSubmit={handleSubmit}>
-        <input type="text" name="name" />
+        <input placeholder="Enter Name" type="text" name="name" />
         <button type="submit">Add user</button>
       </form>
     </div>

@@ -7,6 +7,7 @@ import { AuthContext } from '../auth/Auth';
 import useFirestoreQuery from '../hooks/UseFirestoreQuery';
 import useFirestore from '../hooks/UseFirestore';
 import PlayerPoints from './PlayerPoints';
+import { motion } from 'framer-motion';
 
 const Sessions = () => {
   const { currentUser } = useContext(AuthContext);
@@ -15,26 +16,18 @@ const Sessions = () => {
   // const [sessions] = useCollectionData(query, { idField: 'id' });
 
   const { docs } = useFirestoreQuery('sessions', 'uid', '==', currentUser.uid);
+  const collectionRef = projectFirestore.collection('sessions');
   const handleSubmit = async (event) => {
-    const collectionRef = projectFirestore.collection('sessions');
     try {
       await collectionRef.add({
         createdAt: timestamp(),
         uid: currentUser.uid,
-        rounds: [
-          { player_id: 'afqyyZN8EPmojncHhnrd', points: 200, round_number: 1 },
-          { player_id: 'tnIWK1SV2aZI9dwvB8ev', points: 10, round_number: 1 },
-          { player_id: 'afqyyZN8EPmojncHhnrd', points: 0, round_number: 2 },
-          { player_id: 'tnIWK1SV2aZI9dwvB8ev', points: 10, round_number: 2 },
-          { player_id: 'afqyyZN8EPmojncHhnrd', points: 2, round_number: 3 },
-          { player_id: 'tnIWK1SV2aZI9dwvB8ev', points: 100, round_number: 3 },
-        ],
+        rounds: [],
         players: [],
       });
     } catch (error) {
       alert(error);
     }
-    // setOpen(false);
   };
 
   return (
@@ -43,7 +36,10 @@ const Sessions = () => {
         <h1>Sessions</h1>
       </div>
       <div className="row center">
-        <NewSession click={handleSubmit} />
+        <button onClick={handleSubmit}>NEW SESSION</button>
+      </div>
+      <br />
+      <div className="sessions-container">
         {docs &&
           docs.map((session) => <Session key={session.id} session={session} />)}
       </div>

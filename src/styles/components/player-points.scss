@@ -1,18 +1,35 @@
 .player {
   width: 250px;
-  height: 50px;
-  background-color: red;
+  // height: 50px;
+  // background-color: red;
   .player-name {
     text-align: center;
     padding: 15px;
+    font-size: 45px;
+    border-bottom: 1px solid black;
+    span {
+      padding: 20px 0;
+      margin-top: 20px;
+      display: flex;
+      width: 100%;
+      font-size: 23px;
+    }
   }
   .rounds-container {
     display: flex;
     flex-direction: column;
     .round {
-      height: 50px;
       width: 100%;
-      background-color: blue;
+      margin: 25px 0;
+      font-size: 30px;
+      text-align: center;
+    }
+  }
+  .input-container {
+    flex-direction: column;
+    input {
+      margin-bottom: 25px;
+      width: 100%;
     }
   }
 }

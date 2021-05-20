@@ -17,7 +17,7 @@
       display: flex;
       justify-content: space-between;
       color: $darkGray;
-      width: 30%;
+      width: 40%;
       h1 {
         letter-spacing: 3px;
         position: relative;
@@ -45,4 +45,7 @@
       }
     }
   }
+}
+a {
+  color: $darkGray;
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { projectFirestore } from '../firebase/config';
 
-const Session = (session) => {
-  // const date = session.session.createdAt.toDate().toDateString();
+const Session = (session, click) => {
+  console.log('SINGLE SESSION', session);
+
   // const date = session.session.createdAt.seconds;
   // if (date === null) {
   //   return (
@@ -11,6 +13,9 @@ const Session = (session) => {
   //     </div>
   //   );
   // }
+  const deleteSession = (sessionId) => {
+    projectFirestore.collection('sessions').doc(sessionId).delete();
+  };
   return (
     <Link
       to={{
@@ -19,8 +24,26 @@ const Session = (session) => {
       }}
     >
       <div className="session">
-        {/* <h1>{date}</h1> */}
-        <h1>{session.session.title}</h1>
+        <span
+          className="delete-button"
+          onClick={() => deleteSession(session.session.id)}
+        >
+          X
+        </span>
+        <h2>
+          {session.session.createdAt &&
+            session.session.createdAt.toDate().toDateString()}
+        </h2>
+        {session.session.players && session.session.players.length === 0 ? (
+          <h1>No players</h1>
+        ) : (
+          <div className="player-container">
+            <h2>Players: </h2>
+            {session.session.players.map((player) => (
+              <h4> {player.value} </h4>
+            ))}
+          </div>
+        )}
       </div>
     </Link>
   );
