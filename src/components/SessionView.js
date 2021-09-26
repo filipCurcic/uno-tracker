@@ -32,6 +32,7 @@ const SessionView = ({ location }) => {
       alert(error);
     }
   };
+  const deleteRound = async (playerId, points) => {};
 
   const addPlayers = async () => {
     try {
@@ -58,18 +59,21 @@ const SessionView = ({ location }) => {
               <button onClick={addPlayers}>Add Players</button>
             </div>
           ) : (
-            <div className="players">
-              {doc.players &&
-                doc.players.map((player) => (
-                  <PlayerPoints
-                    player={player}
-                    rounds={doc.rounds.filter(
-                      (doc) => doc.player_id === player.id
-                    )}
-                    click={addRound}
-                  />
-                ))}
-            </div>
+            <>
+              <div className="players">
+                {doc.players &&
+                  doc.players.map((player) => (
+                    <PlayerPoints
+                      player={player}
+                      rounds={doc.rounds.filter(
+                        (doc) => doc.player_id === player.id
+                      )}
+                      click={addRound}
+                      deleteRound={deleteRound}
+                    />
+                  ))}
+              </div>
+            </>
           )}
         </div>
         {/* <button onClick={() => setIsActive(!isActive)}>Finish Session</button> */}
