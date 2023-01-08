@@ -2,17 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { projectFirestore } from '../firebase/config';
 
-const Session = (session, click) => {
-  console.log('SINGLE SESSION', session);
-
-  // const date = session.session.createdAt.seconds;
-  // if (date === null) {
-  //   return (
-  //     <div>
-  //       <h1>loading</h1>
-  //     </div>
-  //   );
-  // }
+const Session = (session) => {
   const deleteSession = (sessionId) => {
     projectFirestore.collection('sessions').doc(sessionId).delete();
   };

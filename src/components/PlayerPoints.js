@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import StickyPoints from './StickyPoints';
+import React, { useState, useRef } from 'react';
 
 const PlayerPoints = ({ player, rounds, click, deleteRound }) => {
   const [points, setPoints] = useState(0);
+  const inputRef = useRef(null);
   const totalPoints = rounds
     .map((round) => round.points)
     .reduce((a, b) => a + b, 0);
@@ -11,11 +11,8 @@ const PlayerPoints = ({ player, rounds, click, deleteRound }) => {
   const handleChange = (e) => {
     setPoints(e.target.value);
   };
-  // console.log(rounds);
   return (
     <div className="player">
-      <StickyPoints />
-
       <div className="player-name">
         {player && player.label}
         <br />
@@ -35,9 +32,14 @@ const PlayerPoints = ({ player, rounds, click, deleteRound }) => {
           ))}
       </div>
       <div className="input-container center">
-        <input placeholder={player && player.label} onChange={handleChange} />
+        <input
+          placeholder={player && player.label}
+          onChange={handleChange}
+          ref={inputRef}
+        />
         <button
           onClick={() => {
+            inputRef.current.value = '';
             click(player.id, points, player.label);
           }}
         >

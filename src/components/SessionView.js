@@ -76,8 +76,6 @@ const SessionView = ({ location }) => {
             </>
           )}
         </div>
-        {/* <button onClick={() => setIsActive(!isActive)}>Finish Session</button> */}
-        {/* {isActive ? <h1>is active</h1> : <h2>is not active anymore</h2>} */}
       </div>
     );
   } else {

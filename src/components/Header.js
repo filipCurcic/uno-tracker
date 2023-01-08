@@ -16,7 +16,6 @@ const Header = () => {
 
   const signOut = () => {
     app.auth().signOut();
-    // console.log(currentUser);
   };
 
   return (
@@ -31,7 +30,6 @@ const Header = () => {
           <Link to="/leaderboard">
             <h1>Leaderboard</h1>
           </Link>
-          {/* {currentUser ? <h1>Friends</h1> : null} */}
           {currentUser ? (
             <h1 onClick={signOut}>Sign Out</h1>
           ) : (
